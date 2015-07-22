@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.1//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.openmrs.module.basicmodule.">
+    <class name="org.openmrs.module.basicmodule.ActivityType" table="basic_module_activity_types">
+        <id name="id" type="java.lang.Integer" column="type_id"
+			unsaved-value="0">
+			<generator class="native" />
+	</id>
+        
+        <property name="activityName" type="java.lang.String" column="activity_name" length="255"  />
+        <property name="activityMethods" type="java.lang.String" column="activity_methods" length="255"  />
+                
+    </class>
+</hibernate-mapping>

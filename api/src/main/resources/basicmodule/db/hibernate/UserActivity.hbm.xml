@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.1//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.openmrs.module.basicmodule.">
+    <class name="org.openmrs.module.basicmodule.UserActivity" table="basic_module_user_activity">
+        <id name="id" type="java.lang.Integer" column="record_id"
+			unsaved-value="0">
+			<generator class="native" />
+	</id>
+        <property name="accessDate" type="java.util.Date" column="activity_date" length="19"/>
+        
+        <property name="activityType" type="java.lang.Integer" column="activity_type" length="11"  />
+        
+        <many-to-one name="patient" class="org.openmrs.Patient" not-null="true">
+                <column name="patient_id" />
+        </many-to-one>
+        
+        <many-to-one name="user" class="org.openmrs.User" not-null="true">
+                <column name="user_id" />
+        </many-to-one>
+                
+    </class>
+</hibernate-mapping>

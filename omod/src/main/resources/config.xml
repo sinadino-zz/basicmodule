@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module configVersion="1.2">
+	
+    <!-- Base Module Properties -->
+    <id>${project.parent.artifactId}</id>
+    <name>${project.parent.name}</name>
+    <version>${project.parent.version}</version>
+    <package>${project.parent.groupId}.${project.parent.artifactId}</package>
+    <author>Dr. Barry Levine</author>
+    <description>
+        ${project.parent.description}
+    </description>
+
+    <activator>${project.parent.groupId}.${project.parent.artifactId}.BasicModuleActivator</activator>
+	
+    <!-- <updateURL>https://modules.openmrs.org/modules/download/@MODULE_ID@/update.rdf</updateURL> -->
+    <!-- /Base Module Properties -->
+	
+    <require_version>1.9.3</require_version>
+    <require_database_version>1.0.0</require_database_version>
+	
+    <!-- Extensions -->
+    <extension>
+        <point>org.openmrs.admin.list</point>
+        <class>${project.parent.groupId}.${project.parent.artifactId}.extension.html.AdminList</class>
+    </extension>
+    <extension>
+        <point>org.openmrs.patientDashboardTab</point>
+        <class>${project.parent.groupId}.${project.parent.artifactId}.extension.html.ExamplePatientDashboardTab</class>
+    </extension>
+        
+        
+    <advice>
+        <point>org.openmrs.api.PatientService</point>
+        <class>org.openmrs.module.basicmodule.advice.CountingAfterAdvice</class>
+    </advice>
+    
+       <advice>
+        <point>org.openmrs.api.EncounterService</point>
+        <class>org.openmrs.module.basicmodule.advice.CountingAfterAdvice</class>
+    </advice>
+    
+        <advice>
+        <point>org.openmrs.api.PersonService</point>
+        <class>org.openmrs.module.basicmodule.advice.CountingAfterAdvice</class>
+    </advice>
+    
+    <advice>
+        <point>org.openmrs.api.OrderService</point>
+        <class>org.openmrs.module.basicmodule.advice.CountingAfterAdvice</class>
+    </advice>
+    
+    <advice>
+        <point>org.openmrs.api.VisitService</point>
+        <class>org.openmrs.module.basicmodule.advice.CountingAfterAdvice</class>
+    </advice>
+       
+    <globalProperty>
+        <property>basicmodule.testproperty</property>
+        <defaultValue>6</defaultValue>
+        <description>
+            Maximum age of a child (exclusive).
+            Default: 6
+        </description>
+    </globalProperty>
+        
+
+    <!-- AOP
+   <advice>
+           <point>org.openmrs.api.FormService</point>
+           <class>@MODULE_PACKAGE@.advice.DuplicateFormAdvisor</class>
+   </advice>
+    /AOP -->
+	
+        
+    <privilege>
+        <name>Pharm add prescription</name>
+        <description>Pharm add prescription</description>
+    </privilege>
+ 
+	
+	
+    <!-- Internationalization -->
+    <!-- All message codes should start with @MODULE_ID@.* -->
+    <messages>
+        <lang>en</lang>
+        <file>messages.properties</file>
+    </messages>
+    <messages>
+        <lang>fr</lang>
+        <file>messages_fr.properties</file>
+    </messages>
+    <messages>
+        <lang>es</lang>
+        <file>messages_es.properties</file>
+    </messages>
+    <!-- /Internationalization -->
+    
+    <mappingFiles>
+        basicmodule/db/hibernate/ActivityRecord.hbm.xml
+        basicmodule/db/hibernate/UserActivity.hbm.xml
+        basicmodule/db/hibernate/ActivityType.hbm.xml
+    </mappingFiles>
+	
+</module>
+
